@@ -32,3 +32,6 @@ H:\programing development\1404\raider\WebApplication.9.0\WebApplication.9.0\obj\
 H:\programing development\1404\raider\WebApplication.9.0\WebApplication.9.0\obj\Debug\net9.0\WebApplication.9.0.pdb
 H:\programing development\1404\raider\WebApplication.9.0\WebApplication.9.0\obj\Debug\net9.0\WebApplication.9.0.genruntimeconfig.cache
 H:\programing development\1404\raider\WebApplication.9.0\WebApplication.9.0\obj\Debug\net9.0\ref\WebApplication.9.0.dll
+H:\programing development\1404\raider\WebApplication.9.0\WebApplication.9.0\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
+H:\programing development\1404\raider\WebApplication.9.0\WebApplication.9.0\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+H:\programing development\1404\raider\WebApplication.9.0\WebApplication.9.0\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
