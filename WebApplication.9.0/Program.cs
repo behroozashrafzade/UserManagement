@@ -9,7 +9,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<AppDbContext>();
 builder.Services.AddDbContextPool<AppDbContext>(o =>
 {
-o.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
+o.UseNpgsql(builder.Configuration.GetConnectionString("DefaultDatabase"));
 });
 var app = builder.Build();
 
