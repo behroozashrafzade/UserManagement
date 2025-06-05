@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using WebApplication._9._0;
+using WebApplication._9._0.Entities;
 using WebApplication._9._0.Services;
 
 var builder = Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder(args);
@@ -27,5 +28,9 @@ app.MapGet("/hello", () => "Hello World!");
 app.MapGet("/Hi", (string name) => "Hello "+name+"!");
 app.MapPost("Welcome",(string name) =>"Welcome "+name+"!" );
 
+app.MapPost("user/Create",(IUserService userService,UserEntity dto)=>{
+    var result =userService.Create(dto);
+    return Results.Ok(result);
+});
 app.Run();
 
