@@ -14,6 +14,7 @@ public class UserService(AppDbContext dbContext) : IUserService
     {
         //dbContext.Set<UserEntity>().Add(user);
         var entity=dbContext.Users.Add(user);
+        dbContext.SaveChanges();
         return entity.Entity;
     }
 }
