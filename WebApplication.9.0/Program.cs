@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using WebApplication._9._0;
+using WebApplication._9._0.Services;
 
 var builder = Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,7 @@ builder.Services.AddDbContextPool<AppDbContext>(o =>
 {
 o.UseNpgsql(builder.Configuration.GetConnectionString("DefaultDatabase"));
 });
+builder.Services.AddScoped<IUserService, UserService>();
 var app = builder.Build();
 
 
