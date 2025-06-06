@@ -33,5 +33,9 @@ app.MapPost("user/Create",async (IUserService userService,UserCreateParams dto)=
     UserResponse result = await userService.Create(dto);
     return Results.Ok(result);
 });
+app.MapGet("user/Read",async (IUserService userService)=>{
+    IEnumerable<UserResponse> result = await userService.Read();
+    return Results.Ok(result);
+});
 app.Run();
 
