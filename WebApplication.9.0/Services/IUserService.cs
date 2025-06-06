@@ -25,23 +25,23 @@ public class UserService(AppDbContext dbContext) : IUserService
         };
         
         //dbContext.Set<UserEntity>().Add(user);
-        var entity=dbContext.Users.Add(user);
+        var entity=dbContext.Users.Add(user).Entity;
         dbContext.SaveChanges();
 
         int? age = null;
-        if (entity.Entity.Birthdate!=null)
+        if (entity.Birthdate!=null)
         {
-            age=DateTime.UtcNow.Year - entity.Entity.Birthdate.Value.Year;
+            age=DateTime.UtcNow.Year - entity.Birthdate.Value.Year;
         }
         
         
         return new UserResponse()
         {
-            Fullname = entity.Entity.Fullname,
-            Email = entity.Entity.Email,
-            PhoneNumber = entity.Entity.PhoneNumber,
-            Birthdate = entity.Entity.Birthdate,
-            IsMarried = entity.Entity.IsMarried,
+            Fullname = entity.Fullname,
+            Email = entity.Email,
+            PhoneNumber = entity.PhoneNumber,
+            Birthdate = entity.Birthdate,
+            IsMarried = entity.IsMarried,
             Age = age
             
         };
