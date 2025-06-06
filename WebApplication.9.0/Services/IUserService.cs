@@ -5,7 +5,12 @@ namespace WebApplication._9._0.Services;
 
 public interface IUserService
 {
+    
+    Task<IEnumerable<UserResponse>> Read();
+    Task<UserResponse> ReadById(Guid i);
+    Task<UserResponse> Update();
     Task<UserResponse> Create(UserCreateParams user);
+   
 }
 
 public class UserService(AppDbContext dbContext) : IUserService
