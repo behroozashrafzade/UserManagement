@@ -29,8 +29,8 @@ app.MapGet("/hello", () => "Hello World!");
 app.MapGet("/Hi", (string name) => "Hello "+name+"!");
 app.MapPost("Welcome",(string name) =>"Welcome "+name+"!" );
 
-app.MapPost("user/Create",(IUserService userService,UserCreateParams dto)=>{
-    UserResponse result =userService.Create(dto);
+app.MapPost("user/Create",async (IUserService userService,UserCreateParams dto)=>{
+    UserResponse result = await userService.Create(dto);
     return Results.Ok(result);
 });
 app.Run();
