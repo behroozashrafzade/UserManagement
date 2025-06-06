@@ -37,5 +37,10 @@ app.MapGet("user/Read",async (IUserService userService)=>{
     IEnumerable<UserResponse> result = await userService.Read();
     return Results.Ok(result);
 });
+
+app.MapGet("user/Read{id:guid}",async (IUserService userService,Guid id)=>{
+    UserResponse? result = await userService.ReadById(id);
+   return result==null ? Results.NotFound() : Results.Ok(result);
+});
 app.Run();
 
