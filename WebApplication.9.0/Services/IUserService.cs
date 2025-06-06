@@ -5,13 +5,13 @@ namespace WebApplication._9._0.Services;
 
 public interface IUserService
 {
-    UserResponse Create(UserCreateParams user);
+    Task<UserResponse> Create(UserCreateParams user);
 }
 
 public class UserService(AppDbContext dbContext) : IUserService
 {
    
-    public UserResponse Create(UserCreateParams dto)
+    public async Task<UserResponse>  Create(UserCreateParams dto)
     {
         UserEntity user=new ()
         {
@@ -26,7 +26,7 @@ public class UserService(AppDbContext dbContext) : IUserService
         
         //dbContext.Set<UserEntity>().Add(user);
         var entity=dbContext.Users.Add(user).Entity;
-        dbContext.SaveChanges();
+        await dbContext.SaveChangesAsync();
 
         int? age = null;
         if (entity.Birthdate!=null)
