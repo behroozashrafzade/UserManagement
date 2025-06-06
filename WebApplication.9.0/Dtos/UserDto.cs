@@ -24,6 +24,7 @@ public class UserCreateParams
 
 public class UserResponse
 {
+    public required Guid Id { get; set; }
     public required string Fullname { get; set; }
     public required string Email { get; set; }
     public required string PhoneNumber { get; set; }
