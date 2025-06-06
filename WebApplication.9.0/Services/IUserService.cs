@@ -21,6 +21,7 @@ public class UserService(AppDbContext dbContext) : IUserService
     {
         var list = await dbContext.Users.Select(x=>new UserResponse
         {
+            Id = x.Id,
             Fullname = x.Fullname,
             Email = x.Email,
             PhoneNumber = x.PhoneNumber,
@@ -48,6 +49,7 @@ public class UserService(AppDbContext dbContext) : IUserService
 
         UserResponse response = new()
         {
+            Id = user.Id,
             Fullname = user.Fullname,
             Email = user.Email,
             PhoneNumber = user.PhoneNumber,
@@ -94,6 +96,7 @@ public class UserService(AppDbContext dbContext) : IUserService
         
         return new UserResponse()
         {
+            Id = entity.Id,
             Fullname = entity.Fullname,
             Email = entity.Email,
             PhoneNumber = entity.PhoneNumber,
