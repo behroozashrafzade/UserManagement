@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using WebApplication._9._0.Dtos;
 using WebApplication._9._0.Entities;
 
@@ -8,14 +9,43 @@ public interface IUserService
     
     Task<IEnumerable<UserResponse>> Read();
     Task<UserResponse> ReadById(Guid i);
-    Task<UserResponse> Update();
+    Task<UserResponse> Update(UserUpdateParams param);
+    Task Delete(Guid id);
     Task<UserResponse> Create(UserCreateParams user);
    
 }
 
 public class UserService(AppDbContext dbContext) : IUserService
 {
-   
+    public async Task<IEnumerable<UserResponse>> Read()
+    {
+        var list = await dbContext.Users.Select(x=>new UserResponse
+        {
+            Fullname = x.Fullname,
+            Email = x.Email,
+            PhoneNumber = x.PhoneNumber,
+            Birthdate = x.Birthdate,
+            IsMarried = x.IsMarried,
+            Age = 7,
+        }).OrderBy(x=>x.Fullname).ToListAsync();
+        return list;
+    }
+
+    public Task<UserResponse> ReadById(Guid i)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<UserResponse> Update(UserUpdateParams param)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task Delete(Guid id)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task<UserResponse>  Create(UserCreateParams dto)
     {
         UserEntity user=new ()
