@@ -8,7 +8,7 @@ public interface IUserService
 {
     
     Task<IEnumerable<UserResponse>> Read();
-    Task<UserResponse> ReadById(Guid i);
+    Task<UserResponse?> ReadById(Guid id);
     Task<UserResponse> Update(UserUpdateParams param);
     Task Delete(Guid id);
     Task<UserResponse> Create(UserCreateParams user);
@@ -31,9 +31,31 @@ public class UserService(AppDbContext dbContext) : IUserService
         return list;
     }
 
-    public Task<UserResponse> ReadById(Guid i)
+    public async Task<UserResponse?> ReadById(Guid id)
     {
-        throw new NotImplementedException();
+        UserEntity? user =await dbContext.Users.FindAsync(id);
+
+        if (user==null)
+        {
+            return null;
+        }
+        
+        int? age = null;
+        if (user.Birthdate!=null)
+        {
+            age=DateTime.UtcNow.Year - user.Birthdate.Value.Year;
+        }
+
+        UserResponse response = new()
+        {
+            Fullname = user.Fullname,
+            Email = user.Email,
+            PhoneNumber = user.PhoneNumber,
+            Birthdate = user.Birthdate,
+            IsMarried = user.IsMarried,
+            Age = 7
+        };
+        return response;
     }
 
     public Task<UserResponse> Update(UserUpdateParams param)
