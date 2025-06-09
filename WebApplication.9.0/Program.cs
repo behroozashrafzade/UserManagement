@@ -47,5 +47,12 @@ app.MapPut("user/Update",async (IUserService userService,UserUpdateParams param)
     UserResponse? result = await userService.Update(param);
     return result==null ? Results.NotFound() : Results.Ok(result);
 });
+
+app.MapDelete("user/Delete",async (IUserService userService,Guid id)=>{
+    await userService.Delete(id);
+    return  Results.Ok();
+});
+
+
 app.Run();
 
