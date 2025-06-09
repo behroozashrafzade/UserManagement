@@ -84,9 +84,9 @@ public class UserService(AppDbContext dbContext) : IUserService
 
     }
 
-    public Task Delete(Guid id)
+    public async Task Delete(Guid id)
     {
-        throw new NotImplementedException();
+        await dbContext.Users.Where(x => x.Id == id).ExecuteDeleteAsync();
     }
 
     public async Task<UserResponse>  Create(UserCreateParams dto)
