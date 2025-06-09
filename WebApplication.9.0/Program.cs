@@ -42,5 +42,10 @@ app.MapGet("user/Read{id:guid}",async (IUserService userService,Guid id)=>{
     UserResponse? result = await userService.ReadById(id);
    return result==null ? Results.NotFound() : Results.Ok(result);
 });
+
+app.MapPut("user/Update",async (IUserService userService,UserUpdateParams param)=>{
+    UserResponse? result = await userService.Update(param);
+    return result==null ? Results.NotFound() : Results.Ok(result);
+});
 app.Run();
 
