@@ -22,6 +22,60 @@ namespace WebApplication._9._0.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("ClassEntityUserEntity", b =>
+                {
+                    b.Property<Guid>("UsersId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("classesId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("UsersId", "classesId");
+
+                    b.HasIndex("classesId");
+
+                    b.ToTable("ClassEntityUserEntity");
+                });
+
+            modelBuilder.Entity("WebApplication._9._0.Entities.ClassEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("SchoolId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SchoolId");
+
+                    b.ToTable("Classes");
+                });
+
+            modelBuilder.Entity("WebApplication._9._0.Entities.SchoolEntitiy", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("schools");
+                });
+
             modelBuilder.Entity("WebApplication._9._0.Entities.UserEntity", b =>
                 {
                     b.Property<Guid>("Id")
@@ -51,6 +105,35 @@ namespace WebApplication._9._0.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("ClassEntityUserEntity", b =>
+                {
+                    b.HasOne("WebApplication._9._0.Entities.UserEntity", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebApplication._9._0.Entities.ClassEntity", null)
+                        .WithMany()
+                        .HasForeignKey("classesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WebApplication._9._0.Entities.ClassEntity", b =>
+                {
+                    b.HasOne("WebApplication._9._0.Entities.SchoolEntitiy", "School")
+                        .WithMany("Classes")
+                        .HasForeignKey("SchoolId");
+
+                    b.Navigation("School");
+                });
+
+            modelBuilder.Entity("WebApplication._9._0.Entities.SchoolEntitiy", b =>
+                {
+                    b.Navigation("Classes");
                 });
 #pragma warning restore 612, 618
         }
