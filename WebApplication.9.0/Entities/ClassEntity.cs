@@ -11,7 +11,7 @@ public class ClassEntity
 
     public required string Title { get; set; }
 
-    public required int Level { get; set; }
+    public required string Subject { get; set; }
 
     public Guid? SchoolId { get; set; }
     public SchoolEntitiy School { get; set; }
