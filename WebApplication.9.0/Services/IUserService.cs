@@ -86,7 +86,15 @@ public class UserService(AppDbContext dbContext) : IUserService
 
     public async Task Delete(Guid id)
     {
-        await dbContext.Users.Where(x => x.Id == id).ExecuteDeleteAsync();
+       
+        UserEntity? user =await dbContext.Users.FindAsync(id);
+
+        if (user == null) return;
+        
+            dbContext.Users.Remove(user);
+            await dbContext.SaveChangesAsync();
+        
+            
     }
 
     public async Task<UserResponse>  Create(UserCreateParams dto)
