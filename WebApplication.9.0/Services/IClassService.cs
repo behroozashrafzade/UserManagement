@@ -54,7 +54,7 @@ public class ClassService (AppDbContext dbContext): IClassService
 
     public async Task<ClassEntity?> Create(ClassEntity param)
     {
-        ClassEntity e = new()
+        ClassEntity e = new() 
         {
             Id = Guid.NewGuid(),
             Subject = param.Subject,

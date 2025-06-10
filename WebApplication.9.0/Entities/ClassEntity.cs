@@ -14,6 +14,6 @@ public class ClassEntity
     public required string Subject { get; set; }
 
     public Guid? SchoolId { get; set; }
-    public SchoolEntitiy School { get; set; }
+    public SchoolEntitiy? School { get; set; }
     public IEnumerable<UserEntity> Users { get; set; }
 }
