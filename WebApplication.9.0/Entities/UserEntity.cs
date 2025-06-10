@@ -22,6 +22,7 @@ public class UserEntity
     public DateTime? Birthdate { get; set; }
 
     public bool IsMarried { get; set; } = false;
-    
+
+    public IEnumerable<ClassEntity> classes { get; set; }
 
 }

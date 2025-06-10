@@ -15,4 +15,5 @@ public class ClassEntity
 
     public Guid? SchoolId { get; set; }
     public SchoolEntitiy School { get; set; }
+    public IEnumerable<UserEntity> Users { get; set; }
 }
