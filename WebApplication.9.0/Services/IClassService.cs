@@ -47,9 +47,12 @@ public class ClassService (AppDbContext dbContext): IClassService
        };
     }
 
-    public Task Delete(Guid id)
+    public async Task Delete(Guid id)
     {
-        throw new NotImplementedException();
+      ClassEntity? e = await dbContext.Class.FindAsync(id);
+      if(e == null) return;
+      dbContext.Class.Remove(e);
+      await dbContext.SaveChangesAsync();
     }
 
     public async Task<ClassEntity?> Create(ClassEntity param)
