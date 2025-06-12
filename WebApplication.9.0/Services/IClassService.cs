@@ -59,7 +59,7 @@ public class ClassService (AppDbContext dbContext): IClassService
     {
         ClassEntity e = new() 
         {
-            Id = Guid.NewGuid(),
+            Id = Guid.CreateVersion7(),
             Subject = param.Subject,
             Title = param.Title,
             SchoolId = param.SchoolId
