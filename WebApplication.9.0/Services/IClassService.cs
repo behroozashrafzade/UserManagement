@@ -69,3 +69,4 @@ public class ClassService (AppDbContext dbContext): IClassService
         return entity;
     }
 }
+//✅
